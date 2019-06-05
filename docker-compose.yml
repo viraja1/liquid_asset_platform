@@ -1,0 +1,56 @@
+version: "3"
+services:
+  issuer_liquid:
+    image: blockstream/liquidd
+    container_name: issuer_liquid
+    ports:
+      - "7000:7000"
+      - "18888:18888"
+    restart: unless-stopped
+    networks:
+      - liquid
+    entrypoint: liquidd --validatepegin=0 --rpcbind=0.0.0.0 --rpcuser=admin --rpcpassword=admin --rpcport=7000 --port=18888   --connect=buyer_liquid:18889  --listen=1 --rpcallowip=0.0.0.0/0 --chain=elementsregtest --initialfreecoins=10000000000
+
+  buyer_liquid:
+    image: blockstream/liquidd
+    container_name: buyer_liquid
+    ports:
+      - "7001:7001"
+      - "18889:18889"
+    restart: unless-stopped
+    networks:
+      - liquid
+    entrypoint: liquidd --validatepegin=0 --rpcbind=0.0.0.0 --rpcuser=admin --rpcpassword=admin --rpcport=7001 --port=18889   --connect=issuer_liquid:18888  --listen=1 --rpcallowip=0.0.0.0/0 --chain=elementsregtest --initialfreecoins=10000000000
+
+  issuer_app:
+    build:
+      context: .
+      dockerfile: Dockerfile_issuer
+    container_name: issuer_app
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    networks:
+      - liquid
+    volumes:
+      - ./asset_issuer:/asset_issuer
+    environment:
+      - RPC_URI=http://admin:admin@issuer_liquid:7000
+
+  buyer_app:
+    build:
+      context: .
+      dockerfile: Dockerfile_buyer
+    container_name: buyer_app
+    ports:
+      - "5001:5001"
+    restart: unless-stopped
+    networks:
+      - liquid
+    volumes:
+      - ./asset_buyer:/asset_buyer
+    environment:
+      - RPC_URI=http://admin:admin@buyer_liquid:7001
+      - ASSET_DETAILS_API=http://issuer_app:5000/api/v1/get_assets_info/
+networks:
+  liquid:

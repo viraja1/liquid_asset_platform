@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="sub-header">Send Asset</h2>
+        <div class="container">
+
+            <form class="form-inline">
+
+                <div class="form-group">
+                    <label class="sr-only" for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="Address">
+                </div>
+                <br/>
+                <br/>
+
+                <div class="form-group">
+                    <label class="sr-only" for="asset_amount">Asset Amount</label>
+                    <input type="number" class="form-control" id="asset_amount" placeholder="Amount">
+                </div>
+                <br/>
+                <br/>
+
+                <div class="form-group">
+                    <label class="sr-only" for="asset_identifier">Asset</label>
+                    <input type="text" class="form-control" id="asset_identifier" placeholder="Asset">
+                </div>
+                <br/>
+                <br/>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <br/>
+            <br/>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block postscript %}
+
+<script>
+    $(document).ready(function () {
+        $('form').on('submit', function (event) {
+
+            let address = $('#address').val();
+            if (!address) {
+                alert('Address is required!');
+                return
+            }
+
+            let asset_amount = $('#asset_amount').val();
+            if (!asset_amount) {
+                alert('Asset amount is required!');
+                return
+            }
+            asset_amount = parseFloat(asset_amount);
+
+            let asset_identifier = $('#asset_identifier').val();
+            if (!asset_identifier) {
+                alert('Asset identifier is required!');
+                return
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/send_asset/',
+                data:  JSON.stringify({
+                    asset_amount: asset_amount,
+                    address: address,
+                    asset_identifier: asset_identifier
+                }),
+                dataType: 'json',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+            })
+            .done(function (data) {
+                window.location.href = '/';
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+
+{% endblock %}

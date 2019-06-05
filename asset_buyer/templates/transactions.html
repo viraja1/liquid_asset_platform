@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{%  block content %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="sub-header">Transactions</h2>
+        <div class="container col-sm-12">
+            {% for transaction in transactions %}
+                <div class="panel panel-default col-sm-12">
+                    <div class="panel-body">
+                        <div>Category: {{ transaction.category }}</div>
+                        <div>Amount: {{ transaction.amount }}</div>
+                        <div>Asset: {{ transaction.asset }}</div>
+                        <div>Address: {{ transaction.address }}</div>
+                        <div>Fee: {{ transaction.fee }}</div>
+                        <div>Confirmations: {{ transaction.confirmations }}</div>
+                        <div>Time: {{ transaction.time }}</div>
+                        <div>Transaction Id: {{ transaction.txid }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
