@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     networks:
       - liquid
-    entrypoint: liquidd --validatepegin=0 --rpcbind=0.0.0.0 --rpcuser=admin --rpcpassword=admin --rpcport=7000 --port=18888   --connect=buyer_liquid:18889  --listen=1 --rpcallowip=0.0.0.0/0 --chain=elementsregtest --initialfreecoins=10000000000
+    entrypoint: liquidd --validatepegin=0 --rpcbind=0.0.0.0 --rpcuser=admin --rpcpassword=admin --rpcport=7000 --port=18888   --connect=buyer_liquid:18889  --listen=1 --rpcallowip=0.0.0.0/0 --chain=elementsregtest --initialfreecoins=10000000000 --txindex=1
 
   buyer_liquid:
     image: blockstream/liquidd
@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
     networks:
       - liquid
-    entrypoint: liquidd --validatepegin=0 --rpcbind=0.0.0.0 --rpcuser=admin --rpcpassword=admin --rpcport=7001 --port=18889   --connect=issuer_liquid:18888  --listen=1 --rpcallowip=0.0.0.0/0 --chain=elementsregtest --initialfreecoins=10000000000
+    entrypoint: liquidd --validatepegin=0 --rpcbind=0.0.0.0 --rpcuser=admin --rpcpassword=admin --rpcport=7001 --port=18889   --connect=issuer_liquid:18888  --listen=1 --rpcallowip=0.0.0.0/0 --chain=elementsregtest --initialfreecoins=10000000000 --txindex=1
 
   issuer_app:
     build:
