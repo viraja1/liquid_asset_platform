@@ -104,7 +104,7 @@ def wallet_info():
 def transactions():
     try:
         rpc_connection = get_rpc_connection()
-        info = rpc_connection.listtransactions()
+        info = rpc_connection.listtransactions("*", 100000)
     except Exception:
         info = {}
     return render_template('transactions.html', transactions=info)
@@ -124,7 +124,7 @@ def send_asset():
 def get_transactions_api():
     try:
         rpc_connection = get_rpc_connection()
-        response = rpc_connection.listtransactions()
+        response = rpc_connection.listtransactions("*", 100000)
     except Exception as e:
         response = {"error": str(e)}
         return app.response_class(
