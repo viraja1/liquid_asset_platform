@@ -62,3 +62,11 @@ Liquid Asset Platform consists of two products:-
    ```
    docker-compose -f docker-compose.yml up -d     
    ```
+   
+6) Check Issuer App
+
+   http://localhost:5000
+   
+7) Check Buyer App
+
+   http://localhost:5001 
