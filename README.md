@@ -63,10 +63,31 @@ Liquid Asset Platform consists of two products:-
    docker-compose -f docker-compose.yml up -d     
    ```
    
-6) Check Issuer App
+6) Check Issuer App (Asset Platform)
 
    http://localhost:5000
    
-7) Check Buyer App
+7) Check Buyer App (Asset Manager)
 
-   http://localhost:5001 
+   http://localhost:5001
+   
+8) Distribute initial free coins equally 
+
+   In docker-compose.yml, we have specified the chain as `elementsregtest` 
+   for testing purposes. Hence we have specified a config option named `initialfreecoins` 
+   with the value of 100 bitcoins in docker-compose.yml. This can be used to pay the fee in the network for trading assets. 
+   We will distribute these initial free coins equally so that we can test the whole flow end to end.
+   
+   From the Issuer App (http://localhost:5000/send_asset/), send the initial free coins to the
+   buyer. For this purpose fetch the buyer address from the buyer app (http://localhost:5001/).
+   From the Issuer app "send asset page", enter the buyer's address, then fill the amount as `50`. 
+   For asset identifier, enter the name as `bitcoin`. Then click on Submit.
+   
+   Verify the balance from issuer app (http://localhost:5000/wallet_info/) 
+   and buyer app (http://localhost:5001/). 
+   
+   For the prod environment, we will use `liquidv1` chain in docker-compose.yml.
+   Hence we will require real liquid bitcoins for trading assets. You can acquire liquid bitcoins from an exchange using bitcoin through a process named `peg-in`.
+   
+   
+   
