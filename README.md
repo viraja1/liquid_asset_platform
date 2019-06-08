@@ -32,6 +32,13 @@ Liquid Asset Platform consists of two products:-
 * Transaction finality in 2 minutes.
 * Single Platform to handle entire asset lifecycle for all assets.
 
+## Screenshots
+### Asset Platform (Issued Assets)
+![](screenshots/issued_assets_2.png)
+
+### Asset Manager (Wallet Balance)
+![](screenshots/buyer_wallet_balance_2.png)
+
 ## Getting started
 1) Clone Repo
    ```
