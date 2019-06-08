@@ -25,12 +25,12 @@ Liquid Asset Platform consists of two products:-
       
       
 ## Why consider Liquid Asset Platform?
-* Liquid Asset Platform is powered using Liquid Sidechain
-* Liquid sidechain is built from the secure Bitcoin codebase
+* Liquid Asset Platform is powered using Liquid Sidechain.
+* Liquid sidechain is built from the secure Bitcoin codebase.
 * Transaction privacy is maintained with the concept of Confidential Assets. 
   Only the participants in the transaction can view the asset amount and asset type.
-* Transaction finality in 2 minutes
-* Single Platform to handle entire asset lifecycle for all assets
+* Transaction finality in 2 minutes.
+* Single Platform to handle entire asset lifecycle for all assets.
 
 ## Getting started
 1) Clone Repo
@@ -83,7 +83,7 @@ Liquid Asset Platform consists of two products:-
    From the Issuer app "send asset page", enter the Buyer's address, then fill the amount as `50`. 
    For asset identifier, enter the name as `bitcoin`. Then click on Submit.
    
-   Verify the balance from issuer app (http://localhost:5000/wallet_info/) 
+   Verify the balance from Issuer app (http://localhost:5000/wallet_info/) 
    and Buyer app (http://localhost:5001/). 
    
    For the prod environment, we will use `liquidv1` chain in docker-compose.yml.
