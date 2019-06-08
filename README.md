@@ -105,9 +105,10 @@ Liquid Asset Platform consists of two products:-
     
 11) Issuer sends asset to Buyer
 
-    Issuer first verifies that the bitcoin payment was successful from the 
-    transactions page (http://localhost:5000/transactions/). Issuer then sends `10` units of the Asset to the Buyer 
-    (http://localhost:5000/send_asset/). Issuer enters Buyer address, amount as `10`
+    First verify that the bitcoin payment was successful from the 
+    transactions page of Issuer App (http://localhost:5000/transactions/). 
+    Then send `10` units of the Asset to the Buyer from the Issuer App 
+    (http://localhost:5000/send_asset/). Enter Buyer address, amount as `10`
     and the asset identifier (Unique id visible in the issued assets page - http://localhost:5000/).
     
     Check the balance of Issuer (http://localhost:5000/wallet_info/) and Buyer 
